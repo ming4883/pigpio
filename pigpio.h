@@ -1000,6 +1000,10 @@ if (gpioGetMode(17) != PI_ALT0)
 D*/
 
 
+volatile uint32_t* gpioGetReg();
+int gpioReadFast(unsigned gpio);
+uint32_t gpioRead_Bits_0_31_Fast(void);
+
 /*F*/
 int gpioSetPullUpDown(unsigned gpio, unsigned pud);
 /*D

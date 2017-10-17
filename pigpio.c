@@ -1317,7 +1317,7 @@ static volatile uint32_t * auxReg  = MAP_FAILED;
 static volatile uint32_t * bscsReg = MAP_FAILED;
 static volatile uint32_t * clkReg  = MAP_FAILED;
 static volatile uint32_t * dmaReg  = MAP_FAILED;
-volatile uint32_t * gpioReg = MAP_FAILED;
+static volatile uint32_t * gpioReg = MAP_FAILED;
 static volatile uint32_t * padsReg = MAP_FAILED;
 static volatile uint32_t * pcmReg  = MAP_FAILED;
 static volatile uint32_t * pwmReg  = MAP_FAILED;
@@ -8686,6 +8686,21 @@ int gpioRead(unsigned gpio)
 
    if ((*(gpioReg + GPLEV0 + BANK) & BIT) != 0) return PI_ON;
    else                                         return PI_OFF;
+}
+
+volatile uint32_t* gpioGetReg()
+{
+   return gpioReg;
+}
+
+int gpioReadFast(unsigned gpio)
+{
+   return (int)((*(gpioReg + GPLEV0 + BANK) & BIT) != 0);
+}
+
+uint32_t gpioRead_Bits_0_31_Fast(void)
+{
+   return (*(gpioReg + GPLEV0));
 }
 
 
